@@ -11,6 +11,11 @@ Populating by naming convention:
 
 ```js
 /**
+ * Import lib
+ */
+const { populateByConvention } = require('json-populate');
+
+/**
  * Example data
  */
 const stories = [
@@ -70,11 +75,6 @@ const graph = { people, stories };
  * Choose an entry point to the graph
  */
 const entry = people[0];
-
-/**
- * Import lib
- */
-const { populateByConvention } = require('json-populate');
 
 /**
  * Create ta populated entry point resolved against the graph with a specified depth
@@ -173,6 +173,11 @@ Populating by explicit reference:
 
 ```js
 /**
+ * Import lib
+ */
+const { populateByReference } = require('json-populate');
+
+/**
  * Example data
  */
 const stories = [
@@ -224,11 +229,6 @@ const graph = { people, stories };
  * Choose an entry point to the graph
  */
 const entry = people[0];
-
-/**
- * Import lib
- */
-const { populateByReference } = require('json-populate');
 
 /**
  * Create ta populated entry point resolved against the graph with a specified depth
