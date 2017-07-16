@@ -1,0 +1,27 @@
+{
+  "name": "json-populate",
+  "version": "1.0.0",
+  "description": "Tool for populating JSON data with infinitely recursive circular references. Sort of like Falcor, but for plain JSON.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eiriklv/json-populate.git"
+  },
+  "keywords": [
+    "json",
+    "graph",
+    "populate",
+    "mongodb",
+    "relations",
+    "join"
+  ],
+  "author": "Eirik Vullum",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eiriklv/json-populate/issues"
+  },
+  "homepage": "https://github.com/eiriklv/json-populate#readme"
+}
