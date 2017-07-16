@@ -4,6 +4,20 @@
 const { getByIdFromCollection } = require('./utils');
 
 /**
+ * Common object population interface
+ *
+ * Function that can populate an object
+ * according to a set of collections
+ *
+ * NOTE: See unit tests for usage and purpose
+ */
+module.exports = function populateByReference() {
+  return typeof Proxy !== 'undefined' ?
+  populateByProxy.apply(null, arguments) :
+  populateByAssign.apply(null, arguments);
+}
+
+/**
  * Object population / linking implemented with ES6 Proxies
  *
  * Creates a proxied object which will resolve
@@ -73,7 +87,7 @@ const populateByProxy = module.exports.populateByProxy = function populateByProx
    * Return a proxied object or a list of proxied object
    */
   return Array.isArray(object) ? (
-    object.map((item) => populateByProxy(depth, collections, item))
+    object.map(function(item) { return populateByProxy(depth, collections, item) })
   ) : (
     new Proxy(object, handler)
   );
@@ -121,9 +135,9 @@ const populateByAssign = module.exports.populateByAssign = function populateByAs
    * Handle both objects and array inputs
    */
   return Array.isArray(object) ? (
-    object.map((item) => populateByAssign(depth, collections, item))
+    object.map(function(item) { return populateByAssign(depth, collections, item) })
   ) : (
-    objectKeys.reduce((result, key) => {
+    objectKeys.reduce(function(result, key) {
       return Object.assign({}, result, {
         [key]: populateByAssign(depth, collections, object[key]),
       });

@@ -76,11 +76,13 @@ const populateByProxy = module.exports.populateByProxy = function populateByProx
       if (typeof value === 'object' && collectionKeys.includes(key)) {
         return Reflect.ownKeys(value)
         .map(getByIdFromCollection(collections[key]))
-        .filter(x => x)
+        .filter(function(x) { return x })
         .map(populateByProxy.bind(null, depth - 1, collections))
-        .reduce((res, item) => Object.assign({}, res, {
-          [item.id]: item
-        }), {});
+        .reduce(function(res, item) {
+          return Object.assign({}, res, {
+            [item.id]: item
+          });
+        }, {});
       }
 
       /**
@@ -112,7 +114,7 @@ const populateByProxy = module.exports.populateByProxy = function populateByProx
    * Return a proxied object or a list of proxied object
    */
   return Array.isArray(object) ? (
-    object.map((item) => populateByProxy(depth, collections, item))
+    object.map(function(item) { return populateByProxy(depth, collections, item) })
   ) : (
     new Proxy(object, handler)
   );
@@ -160,7 +162,7 @@ const populateByAssign = module.exports.populateByAssign = function populateByAs
     /**
      * Extend / populate object
      */
-    return objectKeys.reduce((result, key) => {
+    return objectKeys.reduce(function(result, key) {
       /**
        * For collection references (list of ids) (Array)
        */
@@ -174,10 +176,10 @@ const populateByAssign = module.exports.populateByAssign = function populateByAs
           ) : (
             subItem[key]
             .map(getByIdFromCollection(collections[key]))
-            .filter(function(x) => { return x })
+            .filter(function(x) { return x })
             .map(function(item) { return populateRecursively(depthLeft - 1, item) })
           )
-        };
+        });
       }
 
       /**
@@ -195,13 +197,13 @@ const populateByAssign = module.exports.populateByAssign = function populateByAs
             Object.keys(subItem[key])
             .map(getByIdFromCollection(collections[key]))
             .filter(function(x) { return x })
-            .reduce((result, item) => {
+            .reduce(function(result, item) {
               return Object.assign({}, result, {
                 [item.id]: populateRecursively(depthLeft - 1, item)
-              };
+              });
             }, {})
           )
-        };
+        });
       }
 
       /**
@@ -214,7 +216,7 @@ const populateByAssign = module.exports.populateByAssign = function populateByAs
           ) : (
             populateRecursively(depthLeft - 1, getByIdFromCollection(collections[plural(key)])(subItem[key]))
           )
-        };
+        });
       }
 
       /**
@@ -229,7 +231,7 @@ const populateByAssign = module.exports.populateByAssign = function populateByAs
             .filter(function(x) { return x })
             .map(function(item) { return populateRecursively(depthLeft, item) })
           )
-        };
+        });
       }
 
       /**
@@ -242,7 +244,7 @@ const populateByAssign = module.exports.populateByAssign = function populateByAs
           ) : (
             populateRecursively(depthLeft, subItem[key])
           )
-        }
+        })
       }
 
       return result;
@@ -253,7 +255,7 @@ const populateByAssign = module.exports.populateByAssign = function populateByAs
    * Handle both objects and array inputs
    */
   return Array.isArray(object) ? (
-    object.map((item) => populateRecursively(depth, item))
+    object.map(function(item) { return populateRecursively(depth, item) })
   ) : (
     populateRecursively(depth, object)
   );
