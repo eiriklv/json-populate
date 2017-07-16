@@ -1,9 +1,9 @@
 JSON-populate
 =============
 
-Tool for populating JSON data with infinitely recursive circular references. Sort of like Falcor, but for plain JSON. It uses `Proxy` to lazily resolve relations where supported, otherwise there's a polyfill that uses an eager `Object.assign` approach (slow and very memory intensive if you populate more than a few levels - it's really just there for symbolic backwards compatibility)
-
 [![npm version](https://badge.fury.io/js/json-populate.svg)](https://badge.fury.io/js/json-populate)
+
+Tool for populating JSON data with infinitely recursive circular references. Sort of like Falcor, but for plain JSON. It uses `Proxy` to lazily resolve relations where supported, otherwise there's a polyfill that uses an eager `Object.assign` approach (slow and very memory intensive if you populate more than a few levels - it's really just there for symbolic backwards compatibility)
 
 ## Usage examples
 
