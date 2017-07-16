@@ -77,7 +77,7 @@ const graph = { people, stories };
 const entry = people[0];
 
 /**
- * Create ta populated entry point resolved against the graph with a specified depth
+ * Create a populated entry point resolved against the graph with a specified depth
  */
 const populatedItem = populateByConvention(2, graph, entry);
 
@@ -231,7 +231,7 @@ const graph = { people, stories };
 const entry = people[0];
 
 /**
- * Create ta populated entry point resolved against the graph with a specified depth
+ * Create a populated entry point resolved against the graph with a specified depth
  */
 const populatedItem = populateByReference(2, graph, entry);
 
