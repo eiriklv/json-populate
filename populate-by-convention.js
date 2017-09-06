@@ -61,6 +61,13 @@ const populateByProxy = module.exports.populateByProxy = function populateByProx
       }
 
       /**
+       * Handle dates (Date methods are not supported by proxies)
+       */
+      if (typeof value === 'object' && !!value.getTime) {
+        return value;
+      }
+
+      /**
        * For collection references (list of ids) (Array)
        */
       if (Array.isArray(value) && collectionKeys.includes(key)) {

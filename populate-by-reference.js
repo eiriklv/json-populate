@@ -70,6 +70,13 @@ const populateByProxy = module.exports.populateByProxy = function populateByProx
       }
 
       /**
+       * Handle dates (Date methods are not supported by proxies)
+       */
+      if (typeof value === 'object' && !!value.getTime) {
+        return value;
+      }
+
+      /**
        * Handle nested objects and arrays
        */
       if (value && typeof value === 'object') {

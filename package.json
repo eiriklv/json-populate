@@ -1,6 +1,6 @@
 {
   "name": "json-populate",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Tool for populating JSON data with infinitely recursive circular references. Sort of like Falcor, but for plain JSON.",
   "main": "index.js",
   "scripts": {
