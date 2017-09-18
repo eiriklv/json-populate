@@ -61,6 +61,13 @@ const populateByProxy = module.exports.populateByProxy = function populateByProx
       }
 
       /**
+       * Handle null
+       */
+      if (typeof value === 'object' && !value) {
+        return value;
+      }
+
+      /**
        * Handle dates (Date methods are not supported by proxies)
        */
       if (typeof value === 'object' && !!value.getTime) {
