@@ -41,7 +41,6 @@ const populateByProxy = module.exports.populateByProxy = function populateByProx
    * Check if the object contains the $ref key and populate agains the correct collection
    */
   if (
-    typeof object === 'object' &&
     Object.keys(object).includes('$ref') &&
     Object.keys(object).includes('id')
   ) {
@@ -125,7 +124,6 @@ const populateByAssign = module.exports.populateByAssign = function populateByAs
    * Check if the object contains the $ref key and populate agains the correct collection
    */
   if (
-    typeof object === 'object' &&
     Object.keys(object).includes('$ref') &&
     Object.keys(object).includes('id')
   ) {
